@@ -72,3 +72,10 @@ get '/play/:id' do
     redirect '/'
   end
 end
+
+def available
+  $connection.get('/tracks', q: "test", limit: 1)
+  true
+  rescue Soundcloud::ResponseError
+    false
+end

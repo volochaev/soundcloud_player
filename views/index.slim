@@ -10,13 +10,16 @@ html
         center
           h2.subheader Simple SoundCloud player
         hr
-        form method="post" action="/add"
-          .row.collapse
-            .ten.mobile-three.columns
-              input type="text" placeholder="Start typing song name" id="search" name="[id]"
-            .two.mobile-one.columns
-              input type="submit" class="postfix button expand add_to_playlist" value="Add"
-          i Type song name, artist or album title to view results.
+        - if available
+          form method="post" action="/add"
+            .row.collapse
+              .ten.mobile-three.columns
+                input type="text" placeholder="Start typing song name" id="search" name="[id]"
+              .two.mobile-one.columns
+                input type="submit" class="postfix button expand add_to_playlist" value="Add"
+            i Type song name, artist or album title to view results.
+        - else
+          .alert-box.alert SoundCloud is currently unavailable. Please try again later.
         hr
         #player
         .row
@@ -39,7 +42,7 @@ html
                       a href="#" class="add_to_playlist" data-id="#{t.id}" + add to playlist
                 hr
             
-  script src="/javascripts/jquery.js"
+  script src="http://code.jquery.com/jquery.min.js"
   script src="/javascripts/jquery.tokeninput.js"
   script src="/javascripts/custom.js"
   javascript:
