@@ -1,0 +1,8 @@
+.twelve
+  .three.columns
+    img src="#{@track.artwork_url ? @track.artwork_url : '/images/soundcloud.png'}"
+  .nine.columns
+    h6 == link_to @track.permalink_url, @track.title
+    p
+      a href="#" class="playable" data-id="#{@track.id}" ▶ play
+hr

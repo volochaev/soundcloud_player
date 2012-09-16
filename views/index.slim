@@ -1,0 +1,51 @@
+doctype html
+html
+  head
+    title SoundCloud Player
+    link href="/stylesheets/app.css" media="screen, projector, print" rel="stylesheet" type="text/css"
+    link href="/stylesheets/token-input-facebook.css" media="screen, projector, print" rel="stylesheet" type="text/css"
+  body
+    .row
+      .eight.columns.centered
+        center
+          h2.subheader Simple SoundCloud player
+        hr
+        form method="post" action="/add"
+          .row.collapse
+            .ten.mobile-three.columns
+              input type="text" placeholder="Start typing song name" id="search" name="[id]"
+            .two.mobile-one.columns
+              input type="submit" class="postfix button expand add_to_playlist" value="Add"
+          i Type song name, artist or album title to view results.
+        hr
+        #player
+        .row
+          .six.columns
+            h4.subheader My Playlist
+            .row#my-playlist
+          .six.columns
+            h4.subheader Today's Favorites
+            .row
+              - @top.each do |t|
+                .twelve
+                  .three.columns
+                    img src="#{t.artwork_url ? t.artwork_url : '/images/soundcloud.png'}"
+                  .nine.columns
+                    h6 == link_to t.permalink_url, t.title
+                    p = t.description
+                    p
+                      a href="#" class="playable" data-id="#{t.id}" ▶ play
+                hr
+            
+  script src="/javascripts/jquery.js"
+  script src="/javascripts/jquery.tokeninput.js"
+  script src="/javascripts/custom.js"
+  javascript:
+    $(function() {
+      $('.playable').live('click', function(){
+        $.ajax({
+          url: "play/" + $(this).data('id'),
+          cache: false
+        });
+      });
+    });
