@@ -1,4 +1,2 @@
-$(function() {
-  $('#loader-<%= @track.id %>').remove();
-  $('#my-playlist').prepend('<%= slim "add/new".to_sym %>');
-});
+$('#loader-<%= @track.id %>').remove();
+$('#my-playlist').prepend('<%= slim "add/new".to_sym %>');

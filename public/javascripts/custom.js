@@ -20,15 +20,17 @@ $(function() {
     return false; 
   });
 
-  $.each($('#my-playlist').data('ids'), function(index, value) { 
-    $.ajax({
-      type: "POST", 
-      url: "add/",
-      data: 'id=' + value,
-      cache: false,
-      beforeSend: function() {
-        $('#my-playlist').append('<img src="/images/loader.gif" class="loader" id="loader-' + value + '" />');
-      }
+  if ($('#my-playlist').data('ids')) {
+    $.each($('#my-playlist').data('ids'), function(index, value) { 
+      $.ajax({
+        type: "POST", 
+        url: "add/",
+        data: 'id=' + value,
+        cache: false,
+        beforeSend: function() {
+          $('#my-playlist').append('<img src="/images/loader.gif" class="loader" id="loader-' + value + '" />');
+        }
+      });
     });
-  });
+  };
 });
