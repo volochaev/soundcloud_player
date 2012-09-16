@@ -7,6 +7,3 @@ gem 'zurb-foundation'
 gem 'soundcloud'
 gem 'dalli'
 gem 'slim'
-
-gem 'pry'
-gem 'pry-remote'

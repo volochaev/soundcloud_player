@@ -1,6 +1,10 @@
 audio {
   width: 100%;
 }
+.loader {
+  display: block;
+  margin: 50px auto;
+}
 /* line 51, ../../../../.rvm/gems/ruby-1.9.3-p194@soundcloud-autocomplete/gems/zurb-foundation-3.1.0/scss/foundation/mixins/_semantic-grid.scss */
 .c-1, .c-2, .c-3, .c-4, .c-5, .c-6, .c-7, .c-8, .c-9, .c-10, .c-11, .c-12 {
   float: left;

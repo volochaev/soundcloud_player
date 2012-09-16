@@ -36,12 +36,19 @@ get '/' do
     @top = settings.cache.set('top5', $connection.get('/tracks', limit: 5, order: 'hotness').to_a, ttl = 86400)
   end
   @top = settings.cache.get('top5')
+  @playlist = settings.cache.get(session[:id])
   slim :index
 end
 
 post '/add/' do
   if request.xhr? && params[:id] && id = params[:id].gsub(/\D/, '')
     @track = $connection.get("/tracks/#{id}")
+    # caching
+    (playlist_ids = settings.cache.get(session[:id])) ? playlist_ids : (playlist_ids ||= [])
+    unless playlist_ids.include?(params[:id])
+      playlist_ids << params[:id]
+      settings.cache.set(session[:id], playlist_ids, ttl = 60*60*24*7)
+    end
     content_type 'application/x-javascript', charset: 'utf-8'
     erb 'add/new.js'.to_sym
   else

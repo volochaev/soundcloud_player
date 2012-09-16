@@ -12,11 +12,23 @@ $(function() {
     $.ajax({  
       type: "POST",  
       url: "add/",  
-      data: 'id=' + $('input#search').val(),  
+      data: 'id=' + $('input#search').val(),
       success: function() {
         $('input#search').tokenInput("clear");
       }
     });
     return false; 
+  });
+
+  $.each($('#my-playlist').data('ids'), function(index, value) { 
+    $.ajax({
+      type: "POST", 
+      url: "add/",
+      data: 'id=' + value,
+      cache: false,
+      beforeSend: function() {
+        $('#my-playlist').append('<img src="/images/loader.gif" class="loader" id="loader-' + value + '" />');
+      }
+    });
   });
 });
