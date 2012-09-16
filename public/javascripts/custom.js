@@ -12,7 +12,7 @@ $(function() {
     $.ajax({  
       type: "POST",  
       url: "add/",  
-      data: 'id=' + $('input#search').val(),
+      data: 'id=' + ($('input#search').val() || $(this).data('id')),
       success: function() {
         $('input#search').tokenInput("clear");
       }
@@ -26,7 +26,6 @@ $(function() {
         type: "POST", 
         url: "add/",
         data: 'id=' + value,
-        cache: false,
         beforeSend: function() {
           $('#my-playlist').append('<img src="/images/loader.gif" class="loader" id="loader-' + value + '" />');
         }

@@ -13,12 +13,10 @@ use Rack::Session::Cookie,
   key: 'SESSION_ID',
   expire_after: 60*60*24*7, # one week
   secret: 'SoundCloud app secret token'
-  
+
 # -*- 
 helpers do
   include Helpers
-  include Rack::Utils  
-  alias_method :h, :escape_html
 end
 
 # -*- 
